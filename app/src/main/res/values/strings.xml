@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Task manger</string>
+    <string name="search">search</string>
+    <string name="create">create</string>
+    <string name="subject">current subject:</string>
+    <string name="task">TASKS</string>
+    <string name="addTask">add task</string>
+    <string name="deleteTask">delete tasks</string>
+    <string name="empty"></string>
+    <string name="subjectsMenu">subject:</string>
+    <string name="inputSubject">input subjet</string>
+    <string name="inputTask">input task</string>
+    <string name="notSelected">not selected</string>
+    <string name="SubjectList">List of  Subjects</string>
+</resources>
