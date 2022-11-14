@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Task manger</string>
-    <string name="search">search</string>
+    <string name="app_name">Task manager</string>
     <string name="create">create</string>
-    <string name="subject">current subject:</string>
-    <string name="task">TASKS</string>
-    <string name="addTask">add task</string>
-    <string name="deleteTask">delete tasks</string>
-    <string name="empty"></string>
-    <string name="subjectsMenu">subject:</string>
-    <string name="inputSubject">input subjet</string>
+    <string name="task">List of tasks:</string>
+    <string name="inputSubject">input subject</string>
     <string name="inputTask">input task</string>
-    <string name="notSelected">not selected</string>
     <string name="SubjectList">List of  Subjects</string>
+    <string name="delete">Delete all</string>
+    <string name="success">Succesfully added</string>
+    <string name="error">ERROR: not inserted</string>
+    <string name="back">back</string>
+    <string name="check">check name is nor already regitered</string>
+    <string name="refresh">refresh</string>
+    <string name="SubjectSelected">Subject selected:</string>
 </resources>

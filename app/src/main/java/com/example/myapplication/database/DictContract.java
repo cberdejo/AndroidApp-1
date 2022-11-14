@@ -16,17 +16,17 @@ public class DictContract {
 
     // Creación de tablas
     public static final String SQL_CREATE_ENTRIES_SUBJECT =
-            "CREATE TABLE" + TABLE_CATEGORY_SUBJECT + "(" +
-                    CATEGORY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    CATEGORY_NAME +  "TEXT UNIQUE)";
+            "CREATE TABLE " + TABLE_CATEGORY_SUBJECT + "(" +
+                    CATEGORY_ID + " INTEGER PRIMARY KEY ," +
+                    CATEGORY_NAME +  " TEXT UNIQUE);";
 
     public static final String SQL_CREATE_ENTRIES_TASK =
-            "CREATE TABLE" + TABLE_CATEGORY_TASK + "(" +
-                    CATEGORY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    CATEGORY_TEXT +  "TEXT ," +
+            "CREATE TABLE " + TABLE_CATEGORY_TASK + "(" +
+                    CATEGORY_ID + " INTEGER PRIMARY KEY ," +
+                    CATEGORY_TEXT +  " TEXT ," +
                     CATEGORY_FK_SJ + " integer, FOREIGN KEY('id') REFERENCES "+
                     TABLE_CATEGORY_SUBJECT +"('id')" +
-                    ")";
+                    ");";
 
     public static final String SQL_DELETE_ENTRIES_SUBJECT =
             "DROP TABLE IF EXISTS " + TABLE_CATEGORY_SUBJECT;

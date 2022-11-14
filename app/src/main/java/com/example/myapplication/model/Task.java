@@ -11,17 +11,30 @@ public class Task {
 
     private String text;
     private int id;
+    private int subject;
 
     //constructores
-    public Task(int id, String text) {
+    public Task(int id, String text, int subject) {
         this.id = id ;
         this.text = text;
+        this.subject = subject;
     }
-    // la base de datos genera el id, se evitan id repetidos
-    public Task(String text) {
+    // la base de datos genera el id, se evitan id repetidos, obligatorio la asignatura
+    public Task(String text, int subject) {
+
         this.text = text;
+        this.subject = subject;
     }
     //getter + setter
+
+
+    public int getSubject() {
+        return subject;
+    }
+
+    public void setSubject(int subject) {
+        this.subject = subject;
+    }
 
     public int getId() {
         return id;

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gestor de tareas</string>
-    <string name="search">search</string>
     <string name="create">crear</string>
-    <string name="subject">asignatura actual:</string>
-    <string name="task">TAREAS</string>
-    <string name="addTask">nueva tarea</string>
-    <string name="deleteTask">borrar tareas</string>
-    <string name="subjectsMenu">asignatura:</string>
+    <string name="task">Lista de tareas:</string>
     <string name="inputSubject">escribe asignatura</string>
     <string name="inputTask">escribe tarea</string>
-    <string name="notSelected">no seleccionado</string>
     <string name="SubjectList">"Lista de Asignaturas "</string>
+    <string name="delete">Eliminar  todo</string>
+    <string name="success">Insertado con exito</string>
+    <string name="error">ERROR: no insertado</string>
+    <string name="back">atrás</string>
+    <string name="check">comprueba que el nombre no esté ya insertado</string>
+    <string name="refresh">refresca</string>
+    <string name="SubjectSelected">Asignatura escogida:</string>
 </resources>

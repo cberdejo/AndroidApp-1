@@ -27,8 +27,10 @@ public class Subject {
         this.name = name;
     }
 
+    public Subject() {
+    }
 
- //getter + setter
+    //getter + setter
     public int getId() {
         return id;
     }

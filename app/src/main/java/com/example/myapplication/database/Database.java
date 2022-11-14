@@ -1,6 +1,9 @@
 package com.example.myapplication.database;
 
 import static com.example.myapplication.database.DictContract.DictEntry.CATEGORY_FK_SJ;
+import static com.example.myapplication.database.DictContract.DictEntry.CATEGORY_ID;
+import static com.example.myapplication.database.DictContract.DictEntry.CATEGORY_NAME;
+import static com.example.myapplication.database.DictContract.DictEntry.CATEGORY_TEXT;
 import static com.example.myapplication.database.DictContract.DictEntry.TABLE_CATEGORY_SUBJECT;
 import static com.example.myapplication.database.DictContract.DictEntry.TABLE_CATEGORY_TASK;
 
@@ -13,8 +16,9 @@ import com.example.myapplication.model.Subject;
 import com.example.myapplication.model.Task;
 
 import java.util.ArrayList;
+import java.util.List;
 
-//La base de datos para usar en las activitys
+//La base de datos para usar en las activities
 public class Database {
     private DictDBHelper dbHelper;
     private SQLiteDatabase db;
@@ -24,14 +28,16 @@ public class Database {
         db = dbHelper.getWritableDatabase();
     }
 
-    //Conultas Subject
+//CONSULTAS ubject
+/*--------------------------------------------------------------------------------------------------*/
     public int addSubject (Subject subject){
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name",subject.getName());
+        contentValues.put(CATEGORY_NAME,subject.getName());
         long newRowId = db.insert(TABLE_CATEGORY_SUBJECT,null,contentValues);
         return newRowId==-1 ? 0:-1 ;
     }
+
     public ArrayList<Subject> getAllSubjects(){
         ArrayList<Subject> arrayListSub = new ArrayList<>();
         Cursor cursor = db.query(TABLE_CATEGORY_SUBJECT,null,null,null,null,null,null);
@@ -45,12 +51,51 @@ public class Database {
         return arrayListSub;
 
     }
+    public void addSubjects(List<Subject>listSubjects) {
+        for (Subject s : listSubjects){
+            addSubject(s);
+        }
+    }
 
-    //Consultas Task
+
+    public Subject findSubjectByName(String nameIN) {
+
+
+        String where = CATEGORY_NAME+"=?";
+        String whereArg[] = {nameIN};
+        Subject subject = new Subject();
+
+        Cursor cursor = db.query(TABLE_CATEGORY_SUBJECT,null,where,whereArg,null,null,null);
+        //Name is UNIQUE Solo entra una vez al while si existe
+        while (cursor.moveToNext()){
+            int id = Integer.parseInt(cursor.getString(0));
+            String name = cursor.getString(1);
+            subject = new Subject(id,name);
+        }
+        return subject;
+
+    }
+    public int deleteSubject (Subject subject){
+        String where = CATEGORY_ID + "=?";
+        String whereArg[] = {Integer.toString(subject.getId())};
+
+        long newRowId = db.delete(TABLE_CATEGORY_SUBJECT,where,whereArg);
+        return newRowId==-1 ? 0:-1 ;
+    }
+
+    public void deleteSubjects (List<Subject> subjectList){
+        for (Subject s : subjectList){
+            deleteSubject(s);
+        }
+    }
+
+//CONSULTAS TASK
+/*--------------------------------------------------------------------------------------------------*/
     public int addTask (Task task){
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("text",task.getText());
+        contentValues.put(CATEGORY_TEXT,task.getText());
+        contentValues.put(CATEGORY_FK_SJ,task.getSubject());
         long newRowId = db.insert(TABLE_CATEGORY_TASK,null,contentValues);
         return newRowId==-1 ? 0:-1 ;
     }
@@ -63,7 +108,8 @@ public class Database {
         while (cursor.moveToNext()){
             int id = Integer.parseInt(cursor.getString(0));
             String name = cursor.getString(1);
-            arrayListTask.add(new Task(id,name));
+            int subject = Integer.parseInt(cursor.getString(2));
+            arrayListTask.add(new Task(id,name,subject));
         }
         return arrayListTask;
     }
@@ -78,18 +124,42 @@ public class Database {
         while (cursor.moveToNext()){
             int id = Integer.parseInt(cursor.getString(0));
             String name = cursor.getString(1);
-            arrayListTask.add(new Task(id,name));
+
+            arrayListTask.add(new Task(id,name,subject.getId()));
         }
         return arrayListTask;
     }
+
+    public void addTasks(List<Task> listTasks){
+        for (Task t : listTasks){
+            addTask(t);
+        }
+    }
+
+    public int deleteTask (Task task){
+        String where = CATEGORY_ID + "=?";
+        String whereArg[] = {Integer.toString(task.getId())};
+
+        long newRowId = db.delete(TABLE_CATEGORY_TASK,where,whereArg);
+        return newRowId==-1 ? 0:-1 ;
+    }
+
+    public void deleteTasks (List<Task> taskList){
+        for (Task t : taskList){
+            deleteTask(t);
+        }
+    }
+
+
 
     public void close(){
         db.close();
     }
 
-    public void addSubjects(Subject[] listSubjects) {
-        for (Subject s : listSubjects){
-            addSubject(s);
-        }
-    }
+
+
+
+
+
+
 }
