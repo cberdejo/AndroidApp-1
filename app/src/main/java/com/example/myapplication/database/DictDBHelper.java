@@ -1,3 +1,4 @@
+//author: Christian Berdejo
 package com.example.myapplication.database;
 
 import static com.example.myapplication.database.DictContract.DictEntry.*;
@@ -14,7 +15,9 @@ import com.example.myapplication.model.Subject;
 import com.example.myapplication.model.Task;
 
 import java.util.ArrayList;
-
+/*
+Esta clase define como actua la base de datos al crearla, actualizarla,..
+ */
 public class DictDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;

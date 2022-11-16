@@ -1,3 +1,4 @@
+//author: Christian Berdejo
 package com.example.myapplication.database;
 
 import static com.example.myapplication.database.DictContract.DictEntry.CATEGORY_FK_SJ;
@@ -18,7 +19,11 @@ import com.example.myapplication.model.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-//La base de datos para usar en las activities
+/*
+Esta clase se usa como base de datos para usar en las activities, para tener las consultas ya definidas
+y acceder mas rápido desde los activties
+
+ */
 public class Database {
     private DictDBHelper dbHelper;
     private SQLiteDatabase db;
@@ -28,7 +33,7 @@ public class Database {
         db = dbHelper.getWritableDatabase();
     }
 
-//CONSULTAS ubject
+//CONSULTAS subject
 /*--------------------------------------------------------------------------------------------------*/
     public int addSubject (Subject subject){
 
@@ -85,7 +90,8 @@ public class Database {
 
     public void deleteSubjects (List<Subject> subjectList){
         for (Subject s : subjectList){
-            deleteSubject(s);
+            deleteTasks(getAllTaskFromSubject(s)); //borramos las tareas de esa asignatura
+            deleteSubject(s); //borramos la asignatura
         }
     }
 
@@ -150,8 +156,8 @@ public class Database {
         }
     }
 
-
-
+//cierra bd
+/*--------------------------------------------------------------------------------------------------*/
     public void close(){
         db.close();
     }

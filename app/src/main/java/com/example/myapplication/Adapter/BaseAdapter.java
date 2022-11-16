@@ -1,3 +1,4 @@
+//author: Christian Berdejo
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 
 import java.util.List;
-
+/*
+Esta clase sirve para ir generando los textview que van en cada fila de las listas
+ */
 public class BaseAdapter extends android.widget.BaseAdapter {
         Context context;
         List<String> list;

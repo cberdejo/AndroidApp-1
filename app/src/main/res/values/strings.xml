@@ -12,4 +12,5 @@
     <string name="check">check name is nor already regitered</string>
     <string name="refresh">refresh</string>
     <string name="SubjectSelected">Subject selected:</string>
+    <string name="successDeleted">Succesfully deleted</string>
 </resources>

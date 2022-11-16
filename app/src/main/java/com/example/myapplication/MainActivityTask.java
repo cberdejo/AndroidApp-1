@@ -1,3 +1,4 @@
+//author: Christian Berdejo
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,6 +32,7 @@ public class MainActivityTask extends AppCompatActivity {
     private EditText editText;
     private TextView selected;
     private ListView listView;
+    private BaseAdapter adapterTask;
 
 
 //INICIALIZACIÓN
@@ -38,12 +41,12 @@ public class MainActivityTask extends AppCompatActivity {
 
         //layouts
         listView = (ListView) findViewById(R.id.listView);
-        BaseAdapter adapterSubject = new BaseAdapter(getApplicationContext(),listTask);
-        listView.setAdapter(adapterSubject);
+         adapterTask = new BaseAdapter(getApplicationContext(),listTask);
+        listView.setAdapter(adapterTask);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                    //Lo dejo vacío por si se llega a ampliar la implementación
             }
         });
         editText = (EditText)findViewById(R.id.editText);
@@ -85,6 +88,7 @@ public class MainActivityTask extends AppCompatActivity {
             if (res == -1){
                 toast = Toast.makeText(getApplicationContext(),exito,Toast.LENGTH_SHORT);
                 listTask.add(task.toString());
+                adapterTask.notifyDataSetChanged();
             }else{
                 toast = Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT);
             }
@@ -98,6 +102,7 @@ public class MainActivityTask extends AppCompatActivity {
     public void deleteTasks(View view){
         if (view.getId() == R.id.button2) {
             db.deleteTasks(db.getAllTasks());
+            Toast toast = Toast.makeText(getApplicationContext(),getString(R.string.successDeleted),Toast.LENGTH_SHORT);
             refreh();
         }
     }

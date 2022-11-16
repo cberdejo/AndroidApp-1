@@ -11,9 +11,10 @@ public class Task {
 
     private String text;
     private int id;
-    private int subject;
+    private int subject; //hace referencia al id
 
-    //constructores
+//constructores
+/*--------------------------------------------------------------------------------------------------*/
     public Task(int id, String text, int subject) {
         this.id = id ;
         this.text = text;
@@ -25,7 +26,9 @@ public class Task {
         this.text = text;
         this.subject = subject;
     }
-    //getter + setter
+
+//getter + setter
+/*--------------------------------------------------------------------------------------------------*/
 
 
     public int getSubject() {

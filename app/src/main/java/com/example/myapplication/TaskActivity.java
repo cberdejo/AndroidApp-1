@@ -1,3 +1,4 @@
+//author: Christian Berdejo
 package com.example.myapplication;
 
 import android.app.Activity;

@@ -13,4 +13,5 @@
     <string name="check">comprueba que el nombre no esté ya insertado</string>
     <string name="refresh">refresca</string>
     <string name="SubjectSelected">Asignatura escogida:</string>
+    <string name="successDeleted">Eliminado con exito</string>
 </resources>
