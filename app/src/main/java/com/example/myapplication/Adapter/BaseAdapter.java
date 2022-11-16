@@ -11,7 +11,7 @@ import com.example.myapplication.R;
 
 import java.util.List;
 /*
-Esta clase sirve para ir generando los textview que van en cada fila de las listas
+Esta clase sirve para ir generando los textview que van en cada fila de las LiswView de las interfaces
  */
 public class BaseAdapter extends android.widget.BaseAdapter {
         Context context;

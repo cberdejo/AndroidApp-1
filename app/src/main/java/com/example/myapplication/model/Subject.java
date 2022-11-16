@@ -14,7 +14,7 @@ public class Subject {
 
     private String name;
     private int id;
-   // private List<Task> taskList;Puede ser útil pero no lo he considerado neceario
+   // private List<Task> taskList; //Puede ser útil pero no lo he considerado neceario
 
 //constructores
 /*--------------------------------------------------------------------------------------------------*/
@@ -35,7 +35,7 @@ public class Subject {
     public Subject() {
     }
 
-    //getter + setter
+//getter + setter
 /*--------------------------------------------------------------------------------------------------*/
     public int getId() {
         return id;
@@ -54,8 +54,8 @@ public class Subject {
     }
 
 
-    //toString
-    /*--------------------------------------------------------------------------------------------------*/
+//toString
+/*--------------------------------------------------------------------------------------------------*/
     @Override
     public String toString() {
         return name;

@@ -56,6 +56,8 @@ public class Task {
         this.text = text;
     }
 
+//toString
+/*--------------------------------------------------------------------------------------------------*/
     @Override
     public String toString() {
         return text;

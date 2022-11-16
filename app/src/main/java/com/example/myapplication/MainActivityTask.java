@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainActivityTask extends AppCompatActivity {
 
-    private List<String> listTask;
+    private List<String> listTask; // las tareas que se muestran por pantalla
     private Subject SubjectSelected; // Es la asignatura seleccionada
     //database
     private Database db;
@@ -32,10 +32,11 @@ public class MainActivityTask extends AppCompatActivity {
     private EditText editText;
     private TextView selected;
     private ListView listView;
-    private BaseAdapter adapterTask;
+    private BaseAdapter adapterTask; // el adaptador para hacer funcionar el listView
 
 
-//INICIALIZACIÓN
+
+    //INICIALIZACIÓN
 /*--------------------------------------------------------------------------------------------------*/
     private void initLayout() {
 
@@ -73,7 +74,7 @@ public class MainActivityTask extends AppCompatActivity {
     }
 //ACTION
 /*--------------------------------------------------------------------------------------------------*/
-
+    //add task button
     public void addTask(View view) {
         if (view.getId() == R.id.button) {
             Task task = new Task(editText.getText().toString(),SubjectSelected.getId());
@@ -87,8 +88,8 @@ public class MainActivityTask extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT); //inicialización
             if (res == -1){
                 toast = Toast.makeText(getApplicationContext(),exito,Toast.LENGTH_SHORT);
-                listTask.add(task.toString());
-                adapterTask.notifyDataSetChanged();
+                listTask.add(task.toString()); // Se añade a la lista de tareas
+                adapterTask.notifyDataSetChanged(); //Se debe notificar del cambio al adapter
             }else{
                 toast = Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT);
             }
@@ -98,7 +99,7 @@ public class MainActivityTask extends AppCompatActivity {
         }
 
     }
-
+    //delete all task button
     public void deleteTasks(View view){
         if (view.getId() == R.id.button2) {
             db.deleteTasks(db.getAllTasks());
@@ -106,7 +107,7 @@ public class MainActivityTask extends AppCompatActivity {
             refreh();
         }
     }
-
+    //go back button
     public void goBack(View view ){
         if (view.getId() == R.id.button3) {
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
@@ -118,18 +119,18 @@ public class MainActivityTask extends AppCompatActivity {
 
 //MÉTODOS AUXILIARES
 /*--------------------------------------------------------------------------------------------------*/
-//esconde el teclado de la pantalla
-private void hideSoftKeyboard(View v) {
-    InputMethodManager inputMethodManager;
-    inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    //esconde el teclado de la pantalla
+    private void hideSoftKeyboard(View v) {
+        InputMethodManager inputMethodManager;
+        inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-}
-
-private void refreh (){
-    finish();
-    startActivity(getIntent());
-}
+    }
+    // refresca interfaz
+    private void refreh (){
+        finish();
+        startActivity(getIntent());
+    }
 
 //CREACIÓN
 /*--------------------------------------------------------------------------------------------------*/
@@ -143,6 +144,10 @@ private void refreh (){
 
         initialTasks(SubjectName); // inicializa la lista
         initLayout(); //inicializa layouts
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        db.close();
     }
 
 

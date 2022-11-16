@@ -36,7 +36,6 @@ public class Database {
 //CONSULTAS subject
 /*--------------------------------------------------------------------------------------------------*/
     public int addSubject (Subject subject){
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(CATEGORY_NAME,subject.getName());
         long newRowId = db.insert(TABLE_CATEGORY_SUBJECT,null,contentValues);
@@ -62,10 +61,7 @@ public class Database {
         }
     }
 
-
     public Subject findSubjectByName(String nameIN) {
-
-
         String where = CATEGORY_NAME+"=?";
         String whereArg[] = {nameIN};
         Subject subject = new Subject();
@@ -80,9 +76,12 @@ public class Database {
         return subject;
 
     }
+
     public int deleteSubject (Subject subject){
         String where = CATEGORY_ID + "=?";
         String whereArg[] = {Integer.toString(subject.getId())};
+
+        deleteTasks(getAllTaskFromSubject(subject)); //borramos las tareas de esa asignatura
 
         long newRowId = db.delete(TABLE_CATEGORY_SUBJECT,where,whereArg);
         return newRowId==-1 ? 0:-1 ;
@@ -90,7 +89,6 @@ public class Database {
 
     public void deleteSubjects (List<Subject> subjectList){
         for (Subject s : subjectList){
-            deleteTasks(getAllTaskFromSubject(s)); //borramos las tareas de esa asignatura
             deleteSubject(s); //borramos la asignatura
         }
     }
@@ -98,7 +96,6 @@ public class Database {
 //CONSULTAS TASK
 /*--------------------------------------------------------------------------------------------------*/
     public int addTask (Task task){
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(CATEGORY_TEXT,task.getText());
         contentValues.put(CATEGORY_FK_SJ,task.getSubject());
@@ -116,6 +113,7 @@ public class Database {
             String name = cursor.getString(1);
             int subject = Integer.parseInt(cursor.getString(2));
             arrayListTask.add(new Task(id,name,subject));
+
         }
         return arrayListTask;
     }

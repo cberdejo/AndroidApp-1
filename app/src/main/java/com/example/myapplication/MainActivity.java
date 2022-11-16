@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 //VARIABLES
 // /*--------------------------------------------------------------------------------------------------*/
 
-    private List<String> listSubject;
+    private List<String> listSubject; // la lista de asignaturas que se muestran por pantalla
     //database
     private Database db;
     //views
     private EditText editText;
     private ListView listView;
-    private  BaseAdapter adapterSubject;
+    private  BaseAdapter adapterSubject; // el adaptador para hacer funcionar el listView
 
 
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 //ACCIONES
 /*--------------------------------------------------------------------------------------------------*/
-// crea una nueva asignatura
+// add subject button
     public void addSubject(View view) {
         if (view.getId() == R.id.button) {
             Subject subject = new Subject(editText.getText().toString());
@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT);
             if (res == -1){
                 toast = Toast.makeText(getApplicationContext(),exito,Toast.LENGTH_SHORT);
-                listSubject.add(subject.toString());
-                adapterSubject.notifyDataSetChanged();
+                listSubject.add(subject.toString()); // se añade a la lista
+                adapterSubject.notifyDataSetChanged(); // se debe notificar al adapter de que se ha hecho el cambio
             }else{
                 toast = Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT);
             }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+//delete subjects button
     public void deleteSubjects(View view){
         if (view.getId() == R.id.button2) {
             db.deleteSubjects(db.getAllSubjects());
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
     }
-
+    //refresca la interfaz
     private void refreh (){
         finish();
         startActivity(getIntent());
@@ -135,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
         initialSubject(); // Se inicializa la lista que se muestra en pantalla
         initLayout(); //inicializa layouts
 
+    }
+
+    protected void onDestroy(){
+        super.onDestroy();
+        db.close();
     }
 
 
